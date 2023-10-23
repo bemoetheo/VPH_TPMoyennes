@@ -54,7 +54,63 @@ namespace TPMoyennes
             Console.Read();
         }
     }
+    public class Classe
+    {
+        public string nomClasse;
+        public List<Eleve> eleves = new List<Eleve>();
+        public List<string> matieres = new List<string>();
+        public float moyenneGeneral;
+
+        public Classe(string classeNom)
+        {
+            nomClasse = classeNom;
+        }
+        public void ajouterEleve(string fname, string lname)
+        {
+            if (eleves.Count >= 30)
+            {
+                throw new Exception("Une classe n'accueille qu'au maximum 30 eleves");
+            }
+            eleves.Add(new Eleve { prenom = fname, nom = lname });        
+        }
+        public void ajouterMatiere(string matiere)
+        {
+            if (matieres.Count >= 10)
+            {
+                throw new Exception("10 matieres maximum sont enseignees dans une classe")
+            }
+            matieres.Add(matiere);
+        }
+        public float moyenneMatiere(int m)
+        {
+            float noteTotMat = 0;
+            for (int ieleve = 0; ieleve < eleves.Count; ieleve++)
+            {
+                noteTotMat += eleves[ieleve].moyenneMatiere[1];
+            }
+            float noteMoyMat = noteTotMat / eleves.Count;
+        }
+    }
+    class Eleve
+    {
+        private string _prenom;
+        private string _nom;
+        public List<float> moyenneMatiere = new List<float>();
+        public List<Note> notes = new List<Note>();
+        public string prenom
+        {
+            get => _prenom;
+            set => _prenom = value;
+        }
+        public string nom
+        {
+            get => _nom;
+            set => _nom = value;
+        }
+
+    }
 }
+
 
 
 

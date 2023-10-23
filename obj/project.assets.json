@@ -8,19 +8,24 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\snico\\.nuget\\packages\\": {}
+    "C:\\Users\\Windows\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Boulot\\workspace\\HNI-TPmoyennes\\HNI-TPmoyennes.csproj",
+      "projectUniqueName": "C:\\Users\\Windows\\Source\\Repos\\VPH_TPMoyennes\\HNI-TPmoyennes.csproj",
       "projectName": "HNI-TPmoyennes",
-      "projectPath": "D:\\Boulot\\workspace\\HNI-TPmoyennes\\HNI-TPmoyennes.csproj",
-      "packagesPath": "C:\\Users\\snico\\.nuget\\packages\\",
-      "outputPath": "D:\\Boulot\\workspace\\HNI-TPmoyennes\\obj\\",
+      "projectPath": "C:\\Users\\Windows\\Source\\Repos\\VPH_TPMoyennes\\HNI-TPmoyennes.csproj",
+      "packagesPath": "C:\\Users\\Windows\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Windows\\Source\\Repos\\VPH_TPMoyennes\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\snico\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Windows\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -28,6 +33,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -61,7 +67,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
