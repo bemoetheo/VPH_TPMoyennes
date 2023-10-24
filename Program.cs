@@ -59,7 +59,6 @@ namespace TPMoyennes
         public string nomClasse;
         public List<Eleve> eleves = new List<Eleve>();
         public List<string> matieres = new List<string>();
-        public float moyenneGeneral;
 
         public Classe(string classeNom)
         {
@@ -86,17 +85,27 @@ namespace TPMoyennes
             float noteTotMat = 0;
             for (int ieleve = 0; ieleve < eleves.Count; ieleve++)
             {
-                noteTotMat += eleves[ieleve].moyenneMatiere[1];
+                noteTotMat += eleves[ieleve].listNotes[m].note;
             }
-            float noteMoyMat = noteTotMat / eleves.Count;
+            return noteTotMat / eleves.Count;
+        }
+        public float moyenneGeneral()
+        {
+            float noteMoyGen = 0;
+            for (int ieleve = 0; ieleve < eleves.Count; ieleve++)
+            {
+                noteMoyGen += eleves[ieleve].moyGeneral;
+            }
+            return noteMoyGen/eleves.Count;
         }
     }
-    class Eleve
+    public class Eleve
     {
         private string _prenom;
         private string _nom;
-        public List<float> moyenneMatiere = new List<float>();
-        public List<Note> notes = new List<Note>();
+        public List<Note> toutesNotes = new List<Note>();
+        public List<Note> moyMatiere = new List<Note>();
+        public float moyGeneral;
         public string prenom
         {
             get => _prenom;
@@ -107,6 +116,32 @@ namespace TPMoyennes
             get => _nom;
             set => _nom = value;
         }
+        public float moyenneGeneral()
+        {
+            float noteTotal = 0;
+            for (int imatiere = 0; imatiere < toutesNotes.Count; imatiere++)
+            {
+                noteTotal += toutesNotes[imatiere].note;
+            }
+            moyGeneral = noteTotal / toutesNotes.Count;
+            return moyGeneral;
+        }
+        public float moyenneMatiere(int m)
+        {
+            float noteTotMat = 0;
+            int counter = 0;
+            for (int inote = 0; inote < toutesNotes.Count; inote++)
+            {
+                if (toutesNotes[inote].matiere == m )
+                { 
+                    noteTotMat += toutesNotes[inote].note;
+                    counter++;
+                }
+            }
+            moyMatiere.Add(new Note(m, (noteTotMat / counter)));
+            return noteTotMat / counter;
+        }
+        public void ajouterNote(Note noteEleve) => toutesNotes.Add(noteEleve);
 
     }
 }
