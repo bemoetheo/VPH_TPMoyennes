@@ -158,6 +158,10 @@ namespace TPMoyennes
         }
         public void ajouterNote(Note noteEleve)
         {
+            if (toutesNotes.Count > 200)
+            {
+                throw new Exception("Un eleve recoit au plus 200 notes au cours de l'annee");
+            }    
             toutesNotes.Add(noteEleve);
         }
     }
