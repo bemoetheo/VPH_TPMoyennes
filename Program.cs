@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace TPMoyennes
 {
@@ -82,25 +83,34 @@ namespace TPMoyennes
         }
         public float moyenneMatiere(int m)
         {
-            float noteMatClasse = 0;
+            float noteTotMatClasse = 0;
             for (int ieleve = 0; ieleve < eleves.Count; ieleve++)
             {
-                for (int inote = 0; inote < eleves[ieleve].moyMatiere.Count; inote++)
+                float noteTotMatEleve = 0;
+                int counter = 0;
+                for (int inote = 0; inote < eleves[ieleve].toutesNotes.Count; inote++)
                 {
-                    if (eleves[ieleve].moyMatiere[inote].matiere == m)
+                    if (eleves[ieleve].toutesNotes[inote].matiere == m)
                     {
-                        noteMatClasse += eleves[ieleve].moyMatiere[inote].note;
+                        noteTotMatEleve += eleves[ieleve].toutesNotes[inote].note;
+                        counter++;
                     }
                 }
+                noteTotMatClasse += noteTotMatEleve / counter;
             }
-            return noteMatClasse / eleves.Count;
+            return noteTotMatClasse / eleves.Count;
         }
         public float moyenneGeneral()
         {
             float noteGenClasse = 0;
             for (int ieleve = 0; ieleve < eleves.Count; ieleve++)
             {
-                noteGenClasse += eleves[ieleve].moyGeneral;
+                float noteTotalEleve = 0;
+                for (int inote = 0; inote < eleves[ieleve].toutesNotes.Count; inote++)
+                {
+                    noteTotalEleve += eleves[ieleve].toutesNotes[inote].note;
+                }
+                noteGenClasse += noteTotalEleve / eleves[ieleve].toutesNotes.Count;
             }
             return noteGenClasse/eleves.Count;
         }
@@ -110,8 +120,7 @@ namespace TPMoyennes
         private string _prenom;
         private string _nom;
         public List<Note> toutesNotes = new List<Note>();
-        public List<Note> moyMatiere = new List<Note>();
-        public float moyGeneral;
+        //public List<Note> moyMatiere = new List<Note>();
         public string prenom
         {
             get => _prenom;
@@ -122,6 +131,7 @@ namespace TPMoyennes
             get => _nom;
             set => _nom = value;
         }
+        
         public float moyenneGeneral()
         {
             float noteTotal = 0;
@@ -129,8 +139,7 @@ namespace TPMoyennes
             {
                 noteTotal += toutesNotes[imatiere].note;
             }
-            moyGeneral = noteTotal / toutesNotes.Count;
-            return moyGeneral;
+            return noteTotal/toutesNotes.Count; 
         }
         public float moyenneMatiere(int m)
         {
@@ -144,11 +153,13 @@ namespace TPMoyennes
                     counter++;
                 }
             }
-            moyMatiere.Add(new Note(m, (noteTotMat / counter)));
+            //moyMatiere.Add(new Note(m, (noteTotMat / counter)));
             return noteTotMat / counter;
         }
-        public void ajouterNote(Note noteEleve) => toutesNotes.Add(noteEleve);
-
+        public void ajouterNote(Note noteEleve)
+        {
+            toutesNotes.Add(noteEleve);
+        }
     }
 }
 
