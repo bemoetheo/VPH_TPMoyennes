@@ -55,7 +55,7 @@ namespace TPMoyennes
             Console.Read();
         }
     }
-    public class Classe
+    class Classe
     {
         public string nomClasse;
         public List<Eleve> eleves = new List<Eleve>();
@@ -69,6 +69,7 @@ namespace TPMoyennes
         {
             if (eleves.Count >= 30)
             {
+                Console.WriteLine("Erreur : Une classe n'accueille qu'au maximum 30 eleves");
                 throw new Exception("Une classe n'accueille qu'au maximum 30 eleves");
             }
             eleves.Add(new Eleve { prenom = fname, nom = lname });        
@@ -77,11 +78,12 @@ namespace TPMoyennes
         {
             if (matieres.Count >= 10)
             {
+                Console.WriteLine("Erreur : 10 matieres maximum sont enseignees dans une classe");
                 throw new Exception("10 matieres maximum sont enseignees dans une classe");
             }
             matieres.Add(matiere);
         }
-        public float moyenneMatiere(int m)
+        public decimal moyenneMatiere(int m)
         {
             float noteTotMatClasse = 0;
             for (int ieleve = 0; ieleve < eleves.Count; ieleve++)
@@ -98,9 +100,9 @@ namespace TPMoyennes
                 }
                 noteTotMatClasse += noteTotMatEleve / counter;
             }
-            return noteTotMatClasse / eleves.Count;
+            return Math.Round((decimal)(noteTotMatClasse / eleves.Count),2);
         }
-        public float moyenneGeneral()
+        public decimal moyenneGeneral()
         {
             float noteGenClasse = 0;
             for (int ieleve = 0; ieleve < eleves.Count; ieleve++)
@@ -112,10 +114,10 @@ namespace TPMoyennes
                 }
                 noteGenClasse += noteTotalEleve / eleves[ieleve].toutesNotes.Count;
             }
-            return noteGenClasse/eleves.Count;
+            return Math.Round((decimal)(noteGenClasse/eleves.Count),2);
         }
     }
-    public class Eleve
+    class Eleve
     {
         private string _prenom;
         private string _nom;
@@ -131,16 +133,16 @@ namespace TPMoyennes
             set => _nom = value;
         }
         
-        public float moyenneGeneral()
+        public decimal moyenneGeneral()
         {
             float noteTotal = 0;
             for (int imatiere = 0; imatiere < toutesNotes.Count; imatiere++)
             {
                 noteTotal += toutesNotes[imatiere].note;
             }
-            return noteTotal/toutesNotes.Count; 
+            return Math.Round((decimal)(noteTotal/toutesNotes.Count),2); 
         }
-        public float moyenneMatiere(int m)
+        public decimal moyenneMatiere(int m)
         {
             float noteTotMat = 0;
             int counter = 0;
@@ -152,12 +154,13 @@ namespace TPMoyennes
                     counter++;
                 }
             }
-            return noteTotMat / counter;
+            return Math.Round((decimal)(noteTotMat / counter),2);
         }
         public void ajouterNote(Note noteEleve)
         {
-            if (toutesNotes.Count > 200)
+            if (toutesNotes.Count >= 200)
             {
+                Console.WriteLine("Erreur : Un eleve recoit au plus 200 notes au cours de l'annee");
                 throw new Exception("Un eleve recoit au plus 200 notes au cours de l'annee");
             }    
             toutesNotes.Add(noteEleve);
