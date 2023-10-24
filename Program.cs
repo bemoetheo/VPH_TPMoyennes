@@ -120,7 +120,6 @@ namespace TPMoyennes
         private string _prenom;
         private string _nom;
         public List<Note> toutesNotes = new List<Note>();
-        //public List<Note> moyMatiere = new List<Note>();
         public string prenom
         {
             get => _prenom;
@@ -153,7 +152,6 @@ namespace TPMoyennes
                     counter++;
                 }
             }
-            //moyMatiere.Add(new Note(m, (noteTotMat / counter)));
             return noteTotMat / counter;
         }
         public void ajouterNote(Note noteEleve)
