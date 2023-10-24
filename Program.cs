@@ -76,27 +76,33 @@ namespace TPMoyennes
         {
             if (matieres.Count >= 10)
             {
-                throw new Exception("10 matieres maximum sont enseignees dans une classe")
+                throw new Exception("10 matieres maximum sont enseignees dans une classe");
             }
             matieres.Add(matiere);
         }
         public float moyenneMatiere(int m)
         {
-            float noteTotMat = 0;
+            float noteMatClasse = 0;
             for (int ieleve = 0; ieleve < eleves.Count; ieleve++)
             {
-                noteTotMat += eleves[ieleve].listNotes[m].note;
+                for (int inote = 0; inote < eleves[ieleve].moyMatiere.Count; inote++)
+                {
+                    if (eleves[ieleve].moyMatiere[inote].matiere == m)
+                    {
+                        noteMatClasse += eleves[ieleve].moyMatiere[inote].note;
+                    }
+                }
             }
-            return noteTotMat / eleves.Count;
+            return noteMatClasse / eleves.Count;
         }
         public float moyenneGeneral()
         {
-            float noteMoyGen = 0;
+            float noteGenClasse = 0;
             for (int ieleve = 0; ieleve < eleves.Count; ieleve++)
             {
-                noteMoyGen += eleves[ieleve].moyGeneral;
+                noteGenClasse += eleves[ieleve].moyGeneral;
             }
-            return noteMoyGen/eleves.Count;
+            return noteGenClasse/eleves.Count;
         }
     }
     public class Eleve
